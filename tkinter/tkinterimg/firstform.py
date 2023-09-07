@@ -5,6 +5,7 @@ import os
 
 picvalue.set("C:/Users/yourname/Desktop/yourfolder/file1.png")
 def getimage():
+    #### you can get value from database
     if os.path.isfile(picvalue.get()):
         image_ = Image.open(picvalue.get())
         n_image = image_.resize((100, 100))
