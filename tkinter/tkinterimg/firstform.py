@@ -3,7 +3,7 @@ from allfunctions import*
 from PIL import ImageTk, Image
 import os
 
-picvalue.set("C:/Users/arturo/Desktop/Work_Business/arturo.png")
+picvalue.set("C:/Users/yourname/Desktop/yourfolder/file1.png")
 def getimage():
     if os.path.isfile(picvalue.get()):
         image_ = Image.open(picvalue.get())
@@ -14,7 +14,7 @@ def getimage():
         print(f"Image file '{picvalue.get()}' not found.")
 
 def changepic(img_label):
-    picvalue.set("C:/Users/arturo/Desktop/Work_Business/profilepic_edited.png")
+    picvalue.set("C:/Users/yourname/Desktop/yourfolder/file2.png")
 
     photo=getimage()
     img_label.configure(image=photo)
