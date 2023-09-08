@@ -5,14 +5,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Replace 'path/to/chromedriver' with the path to your downloaded ChromeDriver executable
-chrome_driver_path = 'C:/Users/yourname/Desktop/chromedriver/chromedriver.exe'
+chrome_driver_path = 'C:/Users/arturo/Desktop/chromedriver/version116/chromedriver.exe'
 
 # Replace 'your_username' and 'your_password' with your actual login credentials
-username = 'your username'
-password = 'your password'
+username = 'username'
+password = '1234'
 
-login_url = 'https://yourwebsite.com/login?redirectFrom=/'  # Replace with the login page URL
-#dashboard_url = 'https://uniongame.org/?dashboard'  # Replace with the dashboard page URL or any other desired page
+login_url = 'http://localhost:3000'  # Replace with the login page URL
 
 # Set up ChromeOptions and add the executable path
 service = Service(executable_path=chrome_driver_path)
@@ -26,18 +25,16 @@ try:
     driver.get(login_url)
 
     # Wait for the username input field to be visible
-    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'input-1'))).send_keys(username)
+    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'usernametext'))).send_keys(username)
 
     # Wait for the password input field to be visible
-    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'input-2'))).send_keys(password)
+    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'passwordtext'))).send_keys(password)
+    
+    form_id = 'loginForm'  # Replace with the actual ID of the form
+    login_form = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, form_id)))
 
-    # Find the login form and submit it
-    login_form_locator = 'form[data-v-771317a2]'  # CSS selector to locate the form by its data-v attribute
-    login_form = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, login_form_locator)))
+    # Now, submit the form
     login_form.submit()
-
-    # Wait for the dashboard page to load
-    WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, 'app')))
 
     # Now, get the page source after login
     page_source = driver.page_source
